@@ -1,15 +1,19 @@
 package models.entities.enums;
 
 public enum Types {
-	CURRENT_ACCOUNT(0),SAVINGS_ACCOUNT(1),CREDIT_CARD(2),DEBIT_CARD(3),OTHER(4);
+	CURRENT_ACCOUNT("Current Account"),
+	SAVING_ACCOUNT("Saving Account"),
+	CREDIT_CARD("Credit Card"),
+	DEBIT_CARD("Debit Card"),
+	OTHER("Other");
 	
-	private final int value;
+	private final String value;
 	
-	Types(int option) {
+	Types(String option) {
 		value = option;
 	}
 	
-	public int getValue() {
+	public String getValue() {
 		return value;
 	}
 }
