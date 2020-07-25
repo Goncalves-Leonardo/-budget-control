@@ -11,7 +11,6 @@ public class Account {
 	private Types type;
 	private BigDecimal amount;
 	private String description;
-	//private List<Movimentation> movimentations = new ArrayList<Movimentation>();
 	
 	public Account(String name, Types type, BigDecimal amount, String description) {
 		this.id = UUID.randomUUID();
@@ -44,12 +43,4 @@ public class Account {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
-	/*private void addNewMovimentation(Movimentation movimentation) {
-		movimentations.add(movimentation);
-	}
-	
-	public void addRevenue(BigDecimal amount) {
-		Movimentation movimentation;
-	}*/
 }
