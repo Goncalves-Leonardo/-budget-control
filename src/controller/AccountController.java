@@ -58,4 +58,16 @@ public class AccountController {
 		System.out.printf(BD.toString());
 	}
 	
+	public static void edit(String oldName, String name, String type, String description, FakeBD BD) {
+		Types enumType =  associateType(type);
+		for(Account acc : BD.accs) {
+			if(acc.getName().contains(oldName)) {
+				acc.setName(name);
+				acc.setType(enumType);
+				acc.setDescription(description);
+				break;
+			}
+		}
+	}
+	
 }
