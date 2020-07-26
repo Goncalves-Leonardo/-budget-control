@@ -20,7 +20,7 @@ public class AccountController {
 		}
 	}
 	
-	public static List<String>  listTypesChoices() {
+	public static List<String> listTypesChoices() {
 		List<String> enumValues = new ArrayList<>();
 		for(Types e : Types.values()) {
 			enumValues.add(e.getValue());
@@ -43,5 +43,19 @@ public class AccountController {
 		}
 	}
 	
+	public static void delete(String name, FakeBD BD) {
+		Account accToRemove = null;
+		for(Account acc : BD.accs) {
+			if(acc.getName().contains(name)) {
+				accToRemove = acc;
+				break;
+			}
+		}
+		if(accToRemove != null) BD.accs.remove(accToRemove);
+	}
+	
+	public static void listAllAccounts(FakeBD BD) {
+		System.out.printf(BD.toString());
+	}
 	
 }

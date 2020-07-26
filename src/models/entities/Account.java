@@ -6,14 +6,12 @@ import java.util.UUID;
 import models.entities.enums.Types;
 
 public class Account {
-	private UUID id;
 	private String name;
 	private Types type;
 	private BigDecimal amount;
 	private String description;
 	
 	public Account(String name, Types type, BigDecimal amount, String description) {
-		this.id = UUID.randomUUID();
 		this.name = name;
 		this.type = type;
 		this.amount = amount;
@@ -42,5 +40,9 @@ public class Account {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	public BigDecimal getAmount() {
+		return amount;
 	}
 }
