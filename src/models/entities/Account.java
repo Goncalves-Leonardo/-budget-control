@@ -46,4 +46,10 @@ public class Account {
 	public BigDecimal getAmount() {
 		return amount;
 	}
+
+	@Override
+	public String toString() {
+		return "Account [name=" + name + ", type=" + type + ", amount=" + amount + ", description=" + description + "]";
+	}
+	
 }
