@@ -54,8 +54,8 @@ public class AccountController {
 		if(accToRemove != null) BD.accs.remove(accToRemove);
 	}
 	
-	public static void listAllAccounts(FakeBD BD) {
-		System.out.printf(BD.toString());
+	public static List<Account> returnAllAccounts(FakeBD BD) {
+		return BD.accs;
 	}
 	
 	public static void edit(String oldName, String name, String type, String description, FakeBD BD) {
