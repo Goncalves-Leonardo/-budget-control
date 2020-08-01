@@ -28,4 +28,18 @@ public class FakeBD {
 		
 		return format;
 	}
+
+	public static Income getIncome(String incomeId) {
+		for (Income income : incomes) {
+			if (income.getId() == incomeId) return income;
+		}
+		
+		return null;
+	}
+
+	public static void saveIncome(Income income) { System.out.println("Saving Income..."); }
+
+	public static List<Income> getIncomes() {
+		return FakeBD.incomes;
+	}
 }

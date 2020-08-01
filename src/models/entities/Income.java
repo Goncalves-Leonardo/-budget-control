@@ -16,4 +16,16 @@ public class Income extends Movimentation {
 			"\nDate: " + this.date + 
 			"\nAccountId: " + this.account;
 	}
+
+	public String getId() { return this.id; }
+
+	public void setName(String name) { this.name = name; }
+
+	public void setValue(BigDecimal value) { this.value = value; }
+
+	public void setDate(Date date) { this.date = date; }
+
+	public void setAccount(String accountId) { this.account = accountId; }
+
+	public void setId(String id) { this.id = id; }
 }
