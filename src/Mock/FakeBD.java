@@ -5,10 +5,16 @@ import java.util.List;
 
 import models.entities.Account;
 import models.entities.Income;
+import models.entities.Movimentation;
+import models.entities.Outcome;
 
 public class FakeBD {
 	public List<Account> accs = new ArrayList<>();
-	public static List<Income> incomes = new ArrayList<>();
+	public static List<Movimentation> incomes = new ArrayList<>();
+	public static Integer incomeId = 1;
+	
+	public static List<Movimentation> outcomes = new ArrayList<>();
+	public static Integer outcomeId = 1;
 	
 	@Override
 	public String toString() {
@@ -29,17 +35,43 @@ public class FakeBD {
 		return format;
 	}
 
-	public static Income getIncome(String incomeId) {
-		for (Income income : incomes) {
-			if (income.getId() == incomeId) return income;
+	public static void saveIncome(Income income) {
+		System.out.println("Saving Income...");
+		String id = String.valueOf(FakeBD.incomeId++);
+		income.setId(id);
+		FakeBD.incomes.add(income);
+		System.out.println("Income Saved!");
+	}
+
+	public static List<Movimentation> getMovimentations(String movimentationType) {
+		List<Movimentation> movimentations = null;
+		
+		if (movimentationType == "incomes") {
+			movimentations = FakeBD.incomes;
+		} else if (movimentationType == "outcomes") {
+			movimentations = FakeBD.outcomes;
+		}
+		
+		return movimentations;
+	}
+
+	public static void saveOutcome(Outcome outcome) {
+		System.out.println("Saving Outcome...");
+		String id = String.valueOf(FakeBD.outcomeId++);
+		outcome.setId(id);
+		FakeBD.outcomes.add(outcome);
+		System.out.println("Outcome Saved!");
+	}
+
+	public static Movimentation getMovimentation(String movimentationType, String id) {
+		List<Movimentation> movimentations = movimentationType == "income" ?
+				FakeBD.incomes :
+				FakeBD.outcomes;
+		
+		for (Movimentation movimentation : movimentations) {
+			if (movimentation.getId().equals(id)) return movimentation;
 		}
 		
 		return null;
-	}
-
-	public static void saveIncome(Income income) { System.out.println("Saving Income..."); }
-
-	public static List<Income> getIncomes() {
-		return FakeBD.incomes;
 	}
 }

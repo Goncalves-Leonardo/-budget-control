@@ -1,9 +1,7 @@
 package models.entities;
 
 import java.math.BigDecimal;
-import java.util.List;
 
-import controller.IncomeController;
 import models.entities.enums.Types;
 
 public class Account {
