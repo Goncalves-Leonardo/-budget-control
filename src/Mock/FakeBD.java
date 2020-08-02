@@ -1,19 +1,19 @@
 package Mock;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import models.entities.Account;
-import models.entities.Income;
 import models.entities.Movimentation;
-import models.entities.Outcome;
 
 public class FakeBD {
 	public List<Account> accs = new ArrayList<>();
-	public static List<Movimentation> incomes = new ArrayList<>();
+	public static Set<Movimentation> incomes = new HashSet<>();
 	public static Integer incomeId = 1;
 	
-	public static List<Movimentation> outcomes = new ArrayList<>();
+	public static Set<Movimentation> outcomes = new HashSet<>();
 	public static Integer outcomeId = 1;
 	
 	@Override
@@ -35,16 +35,8 @@ public class FakeBD {
 		return format;
 	}
 
-	public static void saveIncome(Income income) {
-		System.out.println("Saving Income...");
-		String id = String.valueOf(FakeBD.incomeId++);
-		income.setId(id);
-		FakeBD.incomes.add(income);
-		System.out.println("Income Saved!");
-	}
-
-	public static List<Movimentation> getMovimentations(String movimentationType) {
-		List<Movimentation> movimentations = null;
+	public static Set<Movimentation> getMovimentations(String movimentationType) {
+		Set<Movimentation> movimentations = null;
 		
 		if (movimentationType == "incomes") {
 			movimentations = FakeBD.incomes;
@@ -54,17 +46,33 @@ public class FakeBD {
 		
 		return movimentations;
 	}
-
-	public static void saveOutcome(Outcome outcome) {
-		System.out.println("Saving Outcome...");
-		String id = String.valueOf(FakeBD.outcomeId++);
-		outcome.setId(id);
-		FakeBD.outcomes.add(outcome);
-		System.out.println("Outcome Saved!");
+	
+	public static void saveMovimentation(String movimentationType, Movimentation movimentation) {
+		Set<Movimentation> movimentations;
+		Integer movimentationId;
+		
+		if (movimentationType.equals("income")) {
+			movimentations = FakeBD.incomes;
+			movimentationId = FakeBD.incomeId++;
+		} else {
+			movimentations = FakeBD.outcomes;
+			movimentationId = FakeBD.outcomeId++;
+		}
+		
+		String id = String.valueOf(movimentationId);
+		movimentation.setId(id);
+		movimentations.add(movimentation);
 	}
-
+	
+	public static void editMovimentation(String movimentationType, Movimentation movimentation) {
+		Set<Movimentation> movimentations = movimentationType.equals("income") ?
+				FakeBD.incomes :
+				FakeBD.outcomes;
+		movimentations.add(movimentation);
+	}
+	
 	public static Movimentation getMovimentation(String movimentationType, String id) {
-		List<Movimentation> movimentations = movimentationType == "income" ?
+		Set<Movimentation> movimentations = movimentationType == "income" ?
 				FakeBD.incomes :
 				FakeBD.outcomes;
 		

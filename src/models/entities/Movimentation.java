@@ -1,6 +1,9 @@
 package models.entities;
 
 import java.math.BigDecimal;
+import java.text.DateFormat;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 import models.entities.enums.Tag;
@@ -32,15 +35,27 @@ public abstract class Movimentation {
 			"\nAccountId: " + this.account;
 	}
 	
+	public void setId(String id) { this.id = id; }
 	public String getId() { return this.id; }
 
 	public void setName(String name) { this.name = name; }
+	public String getName() { return this.name; }
 
 	public void setValue(BigDecimal value) { this.value = value; }
-
-	public void setDate(Date date) { this.date = date; }
-
+	public BigDecimal getValue() { return this.value; }
+	
 	public void setAccount(String accountId) { this.account = accountId; }
+	public String getAcccountId() { return this.account; }
 
-	public void setId(String id) { this.id = id; }
+	public void setDate(String dateString) throws ParseException {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = df.parse(dateString);
+        
+		this.date = date;
+	}
+	
+	public String getDateString() {
+		DateFormat df = new SimpleDateFormat("dd/MM/yyyy");
+        return df.format(this.date);
+	}
 }
